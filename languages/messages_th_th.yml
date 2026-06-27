@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: ดีบัก FoxWall ในคอนโซล
+        reload: โหลดไฟล์การตั้งค่าใหม่
+        update: อัปเดตส่วนประกอบของปลั๊กอินให้คุณโดยอัตโนมัติ
+    debug:
+        enable: '{prefix} <green>เปิดใช้งานโหมดดีบักแล้ว ตรวจสอบคอนโซล'
+        disable: '{prefix} <red>ปิดใช้งานโหมดดีบักแล้ว'
+    kick:
+        null_ip: <red>การเชื่อมต่อไม่ถูกต้อง</red>
+        samebackend_ip: <red>การเชื่อมต่อจากที่อยู่ IP ของคุณถูกปฏิเสธ</red>
+    reload:
+        message: '{prefix} <green>โหลดไฟล์การตั้งค่าใหม่เรียบร้อยแล้ว'
+    update:
+        invalid_usage: '{prefix} ใช้คำสั่ง <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>'
+        already_downloading: '{prefix} <red>เรากำลังดาวน์โหลดไฟล์อยู่แล้ว...'
+        backend_down: '{prefix} <red>เซิร์ฟเวอร์หลังบ้านของเราดูเหมือนจะล่มหรือไม่เสถียร เราไม่สามารถอัปเดตและทำคำขอให้เสร็จสมบูรณ์ได้'
+        invalid_license: '{prefix} <red>ใบอนุญาตของคุณไม่ถูกต้อง กรุณาใส่คีย์ที่ถูกต้องสำหรับการดำเนินการนี้'
+        downloading_jar: '{prefix} <yellow>กำลังดาวน์โหลดปลั๊กอิน...'
+        downloaded_jar: '{prefix} <green>ดาวน์โหลด JAR ล่าสุดจากเซิร์ฟเวอร์หลังบ้าน/ศูนย์กลางของเราแล้ว รีสตาร์ทเซิร์ฟเวอร์ของคุณเพื่อนำการเปลี่ยนแปลงไปใช้'

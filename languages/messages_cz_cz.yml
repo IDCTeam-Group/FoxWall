@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: Ladění FoxWall v konzoli.
+        reload: Znovu načte konfigurační soubor.
+        update: Automaticky aktualizuje komponenty pluginu za vás.
+    debug:
+        enable: '{prefix} <green>Režim ladění byl aktivován. Zkontrolujte konzoli.'
+        disable: '{prefix} <red>Režim ladění byl deaktivován.'
+    kick:
+        null_ip: <red>Neplatné připojení.</red>
+        samebackend_ip: <red>Připojení z vaší IP adresy bylo zamítnuto.</red>
+    reload:
+        message: '{prefix} <green>Konfigurační soubor byl znovu načten.'
+    update:
+        invalid_usage: '{prefix} Použijte příkaz <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Soubor se již stahuje...'
+        backend_down: '{prefix} <red>Náš backend se zdá být nedostupný nebo nestabilní. Nelze provést aktualizaci a dokončit požadavek.'
+        invalid_license: '{prefix} <red>Vaše licence není platná, zadejte platný klíč pro tuto akci.'
+        downloading_jar: '{prefix} <yellow>Stahuje se plugin...'
+        downloaded_jar: '{prefix} <green>Byl stažen nejnovější JAR z našeho backendu/centra. Restartujte server pro použití změn.'

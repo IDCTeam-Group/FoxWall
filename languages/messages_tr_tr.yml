@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: Konsolda FoxWall'ı hata ayıkla.
+        reload: Yapılandırma dosyasını yeniden yükle.
+        update: Eklenti bileşenlerini otomatik olarak senin için günceller.
+    debug:
+        enable: '{prefix} <green>Hata ayıklama modu etkinleştirildi. Konsolu kontrol edin.'
+        disable: '{prefix} <red>Hata ayıklama modu devre dışı bırakıldı.'
+    kick:
+        null_ip: <red>Geçersiz bağlantı.</red>
+        samebackend_ip: <red>IP adresinizden gelen bağlantı reddedildi.</red>
+    reload:
+        message: '{prefix} <green>Yapılandırma dosyası yeniden yüklendi.'
+    update:
+        invalid_usage: '{prefix} Şu komutu kullanın: <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Zaten bir dosya indiriyoruz...'
+        backend_down: '{prefix} <red>Arka uç sunucumuz kapalı veya kararsız görünüyor. Güncelleme yapamıyor ve isteği tamamlayamıyoruz.'
+        invalid_license: '{prefix} <red>Lisansınız geçerli değil, bu işlem için geçerli bir anahtar girin.'
+        downloading_jar: '{prefix} <yellow>Eklenti indiriliyor...'
+        downloaded_jar: '{prefix} <green>Arka uç/merkez sunucumuzdan en son JAR indirildi. Değişiklikleri uygulamak için sunucunuzu yeniden başlatın.'

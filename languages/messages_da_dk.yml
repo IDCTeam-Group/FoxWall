@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: Fejlfind FoxWall i konsollen.
+        reload: Genindlæs konfigurationsfilen.
+        update: Opdaterer automatisk plugin-komponenter for dig.
+    debug:
+        enable: '{prefix} <green>Fejlfindingstilstand aktiveret. Tjek konsollen.'
+        disable: '{prefix} <red>Fejlfindingstilstand deaktiveret.'
+    kick:
+        null_ip: <red>Ugyldig forbindelse.</red>
+        samebackend_ip: <red>Forbindelse afvist fra din IP-adresse.</red>
+    reload:
+        message: '{prefix} <green>Konfigurationsfilen er blevet genindlæst.'
+    update:
+        invalid_usage: '{prefix} Brug kommandoen <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Vi downloader allerede en fil...'
+        backend_down: '{prefix} <red>Vores backend ser ud til at være nede eller ustabil. Vi kan ikke opdatere og gennemføre anmodningen.'
+        invalid_license: '{prefix} <red>Din licens er ikke gyldig, indtast en gyldig nøgle for denne handling.'
+        downloading_jar: '{prefix} <yellow>Downloader plugin...'
+        downloaded_jar: '{prefix} <green>Den nyeste JAR er downloadet fra vores backend/central. Genstart din server for at anvende ændringerne.'

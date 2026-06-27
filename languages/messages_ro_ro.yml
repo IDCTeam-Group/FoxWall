@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: Depanează FoxWall în consolă.
+        reload: Reîncarcă fișierul de configurare.
+        update: Actualizează automat componentele pluginului pentru tine.
+    debug:
+        enable: '{prefix} <green>Mod de depanare activat. Verifică consola.'
+        disable: '{prefix} <red>Mod de depanare dezactivat.'
+    kick:
+        null_ip: <red>Conexiune invalidă.</red>
+        samebackend_ip: <red>Conexiunea de la adresa ta IP a fost refuzată.</red>
+    reload:
+        message: '{prefix} <green>Fișierul de configurare a fost reîncărcat.'
+    update:
+        invalid_usage: '{prefix} Folosește comanda <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Deja descărcăm un fișier...'
+        backend_down: '{prefix} <red>Backend-ul nostru pare a fi nefuncțional sau instabil. Nu putem actualiza și finaliza cererea.'
+        invalid_license: '{prefix} <red>Licența ta nu este validă, introdu o cheie validă pentru această acțiune.'
+        downloading_jar: '{prefix} <yellow>Se descarcă pluginul...'
+        downloaded_jar: '{prefix} <green>Cel mai recent JAR a fost descărcat de pe backend-ul/centrala noastră. Repornește serverul pentru a aplica modificările.'

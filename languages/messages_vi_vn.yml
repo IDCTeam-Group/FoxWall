@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: Gỡ lỗi FoxWall trong console.
+        reload: Tải lại tệp cấu hình.
+        update: Tự động cập nhật các thành phần plugin cho bạn.
+    debug:
+        enable: '{prefix} <green>Đã bật chế độ gỡ lỗi. Kiểm tra console.'
+        disable: '{prefix} <red>Đã tắt chế độ gỡ lỗi.'
+    kick:
+        null_ip: <red>Kết nối không hợp lệ.</red>
+        samebackend_ip: <red>Kết nối từ địa chỉ IP của bạn đã bị từ chối.</red>
+    reload:
+        message: '{prefix} <green>Tệp cấu hình đã được tải lại.'
+    update:
+        invalid_usage: '{prefix} Sử dụng lệnh <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Chúng tôi đang tải xuống một tệp...'
+        backend_down: '{prefix} <red>Có vẻ backend của chúng tôi đang gặp sự cố hoặc không ổn định. Chúng tôi không thể cập nhật và hoàn tất yêu cầu.'
+        invalid_license: '{prefix} <red>Giấy phép của bạn không hợp lệ, vui lòng nhập khóa hợp lệ cho hành động này.'
+        downloading_jar: '{prefix} <yellow>Đang tải xuống plugin...'
+        downloaded_jar: '{prefix} <green>Đã tải xuống JAR mới nhất từ backend/trung tâm của chúng tôi. Khởi động lại server của bạn để áp dụng các thay đổi.'

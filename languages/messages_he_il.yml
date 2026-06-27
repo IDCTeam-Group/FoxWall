@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: ניפוי באגים של FoxWall בקונסולה.
+        reload: טען מחדש את קובץ התצורה.
+        update: מעדכן באופן אוטומטי את רכיבי התוסף בעבורך.
+    debug:
+        enable: '{prefix} <green>מצב ניפוי באגים הופעל. בדוק את הקונסולה.'
+        disable: '{prefix} <red>מצב ניפוי באגים בוטל.'
+    kick:
+        null_ip: <red>חיבור לא חוקי.</red>
+        samebackend_ip: <red>החיבור מכתובת ה-IP שלך נדחה.</red>
+    reload:
+        message: '{prefix} <green>קובץ התצורה נטען מחדש.'
+    update:
+        invalid_usage: '{prefix} השתמש בפקודה <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>אנחנו כבר מורידים קובץ...'
+        backend_down: '{prefix} <red>נראה שהשרת שלנו מושבת או לא יציב. לא ניתן לעדכן ולהשלים את הבקשה.'
+        invalid_license: '{prefix} <red>הרישיון שלך אינו תקף, הזן מפתח תקף לפעולה זו.'
+        downloading_jar: '{prefix} <yellow>מוריד את התוסף...'
+        downloaded_jar: '{prefix} <green>הורד ה-JAR העדכני ביותר מהשרת המרכזי שלנו. הפעל מחדש את השרת שלך כדי להחיל את השינויים.'

@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: コンソールでFoxWallをデバッグします。
+        reload: 設定ファイルを再読み込みします。
+        update: プラグインのコンポーネントを自動的に更新します。
+    debug:
+        enable: '{prefix} <green>デバッグモードが有効になりました。コンソールを確認してください。'
+        disable: '{prefix} <red>デバッグモードが無効になりました。'
+    kick:
+        null_ip: <red>無効な接続です。</red>
+        samebackend_ip: <red>あなたのIPアドレスからの接続は拒否されました。</red>
+    reload:
+        message: '{prefix} <green>設定ファイルが再読み込みされました。'
+    update:
+        invalid_usage: '{prefix} 次のコマンドを使用してください: <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>。'
+        already_downloading: '{prefix} <red>すでにファイルをダウンロード中です...'
+        backend_down: '{prefix} <red>バックエンドがダウンしているか不安定なようです。更新してリクエストを完了することができません。'
+        invalid_license: '{prefix} <red>ライセンスが無効です。この操作には有効なキーを入力してください。'
+        downloading_jar: '{prefix} <yellow>プラグインをダウンロードしています...'
+        downloaded_jar: '{prefix} <green>バックエンド/中央サーバーから最新のJARをダウンロードしました。変更を適用するにはサーバーを再起動してください。'

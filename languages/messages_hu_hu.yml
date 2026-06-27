@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: FoxWall hibakeresése a konzolban.
+        reload: Konfigurációs fájl újratöltése.
+        update: Automatikusan frissíti a plugin összetevőit.
+    debug:
+        enable: '{prefix} <green>Hibakeresési mód engedélyezve. Ellenőrizd a konzolt.'
+        disable: '{prefix} <red>Hibakeresési mód letiltva.'
+    kick:
+        null_ip: <red>Érvénytelen kapcsolat.</red>
+        samebackend_ip: <red>A kapcsolat elutasítva az IP-címedről.</red>
+    reload:
+        message: '{prefix} <green>A konfigurációs fájl újratöltve.'
+    update:
+        invalid_usage: '{prefix} Használd a <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset> parancsot.'
+        already_downloading: '{prefix} <red>Már letöltünk egy fájlt...'
+        backend_down: '{prefix} <red>A háttérrendszerünk leállt vagy instabil. Nem tudjuk frissíteni és befejezni a kérést.'
+        invalid_license: '{prefix} <red>A licenced érvénytelen, adj meg egy érvényes kulcsot ehhez a művelethez.'
+        downloading_jar: '{prefix} <yellow>Plugin letöltése...'
+        downloaded_jar: '{prefix} <green>A legújabb JAR letöltve a háttérrendszerünkből. Indítsd újra a szervert a változások alkalmazásához.'

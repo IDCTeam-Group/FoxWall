@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: 在控制台中调试 FoxWall。
+        reload: 重新加载配置文件。
+        update: 自动为您更新插件组件。
+    debug:
+        enable: '{prefix} <green>已启用调试模式。请检查控制台。'
+        disable: '{prefix} <red>已禁用调试模式。'
+    kick:
+        null_ip: <red>无效的连接。</red>
+        samebackend_ip: <red>来自您 IP 地址的连接已被拒绝。</red>
+    reload:
+        message: '{prefix} <green>配置文件已重新加载。'
+    update:
+        invalid_usage: '{prefix} 请使用命令 <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>。'
+        already_downloading: '{prefix} <red>我们已经在下载文件了……'
+        backend_down: '{prefix} <red>我们的后端似乎已宕机或不稳定。我们无法更新并完成此请求。'
+        invalid_license: '{prefix} <red>您的许可证无效，请为此操作输入有效的密钥。'
+        downloading_jar: '{prefix} <yellow>正在下载插件……'
+        downloaded_jar: '{prefix} <green>已从我们的后端/中央服务器下载最新的 JAR。请重启您的服务器以应用更改。'

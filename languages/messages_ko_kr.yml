@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: 콘솔에서 FoxWall을 디버그합니다.
+        reload: 구성 파일을 다시 불러옵니다.
+        update: 플러그인 구성 요소를 자동으로 업데이트합니다.
+    debug:
+        enable: '{prefix} <green>디버그 모드가 활성화되었습니다. 콘솔을 확인하세요.'
+        disable: '{prefix} <red>디버그 모드가 비활성화되었습니다.'
+    kick:
+        null_ip: <red>잘못된 연결입니다.</red>
+        samebackend_ip: <red>회원님의 IP 주소에서의 연결이 거부되었습니다.</red>
+    reload:
+        message: '{prefix} <green>구성 파일이 다시 불러와졌습니다.'
+    update:
+        invalid_usage: '{prefix} 다음 명령어를 사용하세요: <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>이미 파일을 다운로드하고 있습니다...'
+        backend_down: '{prefix} <red>백엔드가 다운되었거나 불안정한 것 같습니다. 업데이트 및 요청을 완료할 수 없습니다.'
+        invalid_license: '{prefix} <red>라이선스가 유효하지 않습니다. 이 작업을 위해 유효한 키를 입력하세요.'
+        downloading_jar: '{prefix} <yellow>플러그인을 다운로드하는 중...'
+        downloaded_jar: '{prefix} <green>백엔드/중앙 서버에서 최신 JAR을 다운로드했습니다. 변경 사항을 적용하려면 서버를 재시작하세요.'

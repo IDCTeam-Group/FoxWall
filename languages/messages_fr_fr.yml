@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: Déboguer FoxWall dans la console.
+        reload: Recharge le fichier de configuration.
+        update: Met automatiquement à jour les composants du plugin pour vous.
+    debug:
+        enable: '{prefix} <green>Mode débogage activé. Vérifiez la console.'
+        disable: '{prefix} <red>Mode débogage désactivé.'
+    kick:
+        null_ip: <red>Connexion invalide.</red>
+        samebackend_ip: <red>Connexion refusée depuis votre adresse IP.</red>
+    reload:
+        message: '{prefix} <green>Le fichier de configuration a été rechargé.'
+    update:
+        invalid_usage: '{prefix} Utilisez la commande <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>Nous téléchargeons déjà un fichier...'
+        backend_down: '{prefix} <red>Notre backend semble être hors service ou instable. Nous ne pouvons pas mettre à jour ni terminer la demande.'
+        invalid_license: '{prefix} <red>Votre licence n'est pas valide, indiquez une clé valide pour cette action.'
+        downloading_jar: '{prefix} <yellow>Téléchargement du plugin...'
+        downloaded_jar: '{prefix} <green>Dernier JAR téléchargé depuis notre backend/central. Redémarrez votre serveur pour appliquer les changements.'

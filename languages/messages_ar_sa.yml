@@ -1,0 +1,40 @@
+#
+#   /\/\   ___  ___ ___  __ _  __ _  ___  ___
+#  /    \ / _ \/ __/ __|/ _` |/ _` |/ _ \/ __|
+# / /\/\ \  __/\__ \__ \ (_| | (_| |  __/\__ \
+# \/    \/\___||___/___/\__,_|\__, |\___||___/
+#                             |___/
+#
+# 🔨 Configure the plugins messages.
+# You can use MiniMessage in this section. This also works with
+# legacy bukkit colors, but isn't recommended, because of
+# an incompatibility!
+# Also, PlaceholderAPI is supported.
+#
+# 📷 Viewer:
+# https://webui.advntr.dev/
+#
+# 📚 Format:
+# https://docs.papermc.io/adventure/minimessage/format/
+message:
+    # 🪄 Determine the message prefix for the plugin.
+    prefix: <green><bold>FW</bold></green><dark_gray> ►<reset>
+    help:
+        debug: تصحيح أخطاء FoxWall في وحدة التحكم.
+        reload: إعادة تحميل ملف التكوين.
+        update: تحديث مكونات الإضافة تلقائيًا لك.
+    debug:
+        enable: '{prefix} <green>تم تفعيل وضع التصحيح. تحقق من وحدة التحكم.'
+        disable: '{prefix} <red>تم تعطيل وضع التصحيح.'
+    kick:
+        null_ip: <red>اتصال غير صالح.</red>
+        samebackend_ip: <red>تم رفض الاتصال من عنوان IP الخاص بك.</red>
+    reload:
+        message: '{prefix} <green>تم إعادة تحميل ملف التكوين.'
+    update:
+        invalid_usage: '{prefix} استخدم الأمر <dark_gray>''</dark_gray>/fw update <green><plugin></green><dark_gray>''</dark_gray><reset>.'
+        already_downloading: '{prefix} <red>نحن نقوم بتنزيل ملف بالفعل...'
+        backend_down: '{prefix} <red>يبدو أن خادمنا الخلفي معطل أو غير مستقر. لا يمكننا التحديث وإكمال الطلب.'
+        invalid_license: '{prefix} <red>رخصتك غير صالحة، أدخل مفتاحًا صالحًا لهذا الإجراء.'
+        downloading_jar: '{prefix} <yellow>جارٍ تنزيل الإضافة...'
+        downloaded_jar: '{prefix} <green>تم تنزيل أحدث JAR من خادمنا الخلفي/المركزي. أعد تشغيل الخادم لتطبيق التغييرات.'
