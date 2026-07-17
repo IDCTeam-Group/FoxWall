@@ -42,7 +42,7 @@ public final class MinecraftVersion {
 			return MinecraftVersion.current;
 		}
     
-		public String toString() { return "1." + this.minorVersionNumber; }
+		@Override public String toString() { return "1." + this.minorVersionNumber; }
 	}
   
 	public static boolean equals(V version) { return (compareWith(version) == 0); }
