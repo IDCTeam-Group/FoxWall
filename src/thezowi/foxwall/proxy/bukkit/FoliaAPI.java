@@ -100,7 +100,7 @@ public class FoliaAPI {
                 return method.invoke(object, args);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(System.out);
         }
         return null;
     }
@@ -213,14 +213,14 @@ public class FoliaAPI {
         if (isFolia()) {
             try {
                 bS.runTask(pl, task);
-            } catch (Exception e) {}        	
+            } catch (Exception e) { /* expected */ }        	
         }
         try {
         	Method getSchedulerMethod = entity.getClass().getMethod("getScheduler");
         	Object entityScheduler = getSchedulerMethod.invoke(entity);
         	Method runMethod = entityScheduler.getClass().getMethod("run", Plugin.class, Runnable.class, Runnable.class, Long.class);
         	runMethod.invoke(entityScheduler, pl, task, null, 0L);
-        } catch (Exception e) {}
+        } catch (Exception e) { /* expected */ }
     }
     
     public static void runTaskForEntity(Plugin pl, Entity entity, Runnable run, Runnable retired, long delay) {
@@ -234,7 +234,7 @@ public class FoliaAPI {
 	        Object entityScheduler = invokeMethod(getSchedulerMethod, entity);
 	        Method executeMethod = cachedMethods.get("entityScheduler.execute");
 	        invokeMethod(executeMethod, entityScheduler, pl, run, retired, delay);
-        } catch (Exception e) {}
+        } catch (Exception e) { /* expected */ }
     }
 
     public static void runTaskForEntityRepeating(Plugin pl, Entity entity, Consumer<Object> task, Runnable retired,

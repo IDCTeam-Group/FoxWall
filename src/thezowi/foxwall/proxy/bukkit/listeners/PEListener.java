@@ -86,7 +86,7 @@ public class PEListener extends FilesManager implements Listener {
                 event.setCancelled(true);
                 try {
                 	((User) event.getPlayer()).closeConnection();
-                } catch (Throwable ig) {}
+                } catch (Exception ig) { /* expected */ }
                 return; 
             }
             
@@ -99,7 +99,7 @@ public class PEListener extends FilesManager implements Listener {
             	event.setCancelled(true); 
             	try {
             		((User) event.getPlayer()).closeConnection();
-            	} catch (Throwable ig) {}
+            	} catch (Exception ig) { /* expected */ }
             	return;
             }
         }

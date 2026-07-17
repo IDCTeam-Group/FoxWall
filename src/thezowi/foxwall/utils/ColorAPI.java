@@ -365,6 +365,7 @@ public class ColorAPI {
     	public static String convertLegacyToMini(final String message, final boolean supportAmpersand) {
     		final StringBuilder result = new StringBuilder();
     		final String[] parts = message.split(" ", -1);
+    		final StringBuilder hex = new StringBuilder("#");
     		for (int idx = 0; idx < parts.length; idx++) {
     			final String part = parts[idx];
     			if (GENERIC_DOMAIN_PATTERN.matcher(part).find()) {
@@ -399,9 +400,10 @@ public class ColorAPI {
 
     				if(!part.startsWith("<")) continue;
     			}
+    			hex.setLength(1);
     			for (int i = 0; i < part.length(); i++) {
     				if (i + 13 < part.length() && part.charAt(i) == '§' && part.charAt(i + 1) == 'x') {
-    					final StringBuilder hex = new StringBuilder("#");
+    					hex.setLength(1);
     					boolean isValidHexSequence = true;
     					for (int j = 2; j <= 12; j += 2) {
     						if (part.charAt(i + j) == '§')

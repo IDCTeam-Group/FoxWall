@@ -64,7 +64,7 @@ public class SharedFunctions {
 		String ip = null;
 		try {
 			ip = getAddress().get(6, TimeUnit.SECONDS).toString();
-		} catch (Throwable ig) {
+		} catch (Exception ig) {
 			 SharedFunctions.logger.severe("[IP] Failed to get IP! Try to contact to your hosting");
 			 SharedFunctions.logger.severe("[IP] for receive original IP as alternative!");
 			 SharedFunctions.logger.severe("[IP] Tried to target:");
@@ -108,12 +108,12 @@ public class SharedFunctions {
 			    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 			    return response.body();
 			    
-			} catch (Throwable ig) {
+			} catch (Exception ig) {
 				try {
 					HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.ipify.org/")).GET().timeout(Duration.ofMillis(3000)).build();
 				    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 				    return response.body();		
-				} catch (Throwable ig2) { return "Failed!"; }
+				} catch (Exception ig2) { return "Failed!"; }
 			}
 		});
 	}
@@ -156,7 +156,7 @@ public class SharedFunctions {
 						logger.info(() -> "[UPDATER] Your version is: "+current);
 						logger.info(() -> "[UPDATER] Latest version is: "+latest);
 					}
-					if (file.getSettings().getUpdater().getAutomatically().getEnabled()) { try { AutoUpdater.update(false); } catch (Throwable e) {} }
+					if (file.getSettings().getUpdater().getAutomatically().getEnabled()) { try { AutoUpdater.update(false); } catch (Exception e) { /* expected */ } }
 				} else {
 					if (!periodically) { logger.info(() -> "[UPDATER] You are using the latest version of FoxWall."); }
 				} 

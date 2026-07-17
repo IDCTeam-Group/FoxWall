@@ -31,8 +31,8 @@ public class FilesManager {
     private Settings config = null;
     private LangConfig lang = null;
     
-    public static List<String> ALLOWED_PROXY_IP = null;
-    public static List<String> ALLOWED_TOKENS = null;
+    public static final List<String> ALLOWED_PROXY_IP = new java.util.ArrayList<>();
+    public static final List<String> ALLOWED_TOKENS = new java.util.ArrayList<>();
     
     public static String LANG_KICK_NULL;
     public static String LANG_KICK_SAMEBACKEND;
@@ -51,10 +51,10 @@ public class FilesManager {
 	    
 	    this.config = this.loadConfig(Settings.class, this.path.resolve("config.yml"), "config.yml");
 	    
-	    if (ALLOWED_PROXY_IP != null) { ALLOWED_PROXY_IP.clear(); }
-	    ALLOWED_PROXY_IP = this.getSettings().getPacketHandler().getIPs();
-	    if (ALLOWED_TOKENS != null) { ALLOWED_TOKENS.clear(); }
-	    ALLOWED_TOKENS = this.getSettings().getPacketHandler().getIPs();
+	    ALLOWED_PROXY_IP.clear();
+	    ALLOWED_PROXY_IP.addAll(this.getSettings().getPacketHandler().getIPs());
+	    ALLOWED_TOKENS.clear();
+	    ALLOWED_TOKENS.addAll(this.getSettings().getPacketHandler().getIPs());
 	    
 	    /* Language */
         String language = this.getSettings().getLanguage().toLowerCase();
@@ -63,7 +63,7 @@ public class FilesManager {
         	try {
         	    CompletableFuture<Void> languageFuture = this.downloadLang(language, languageFile);
         	    if (languageFuture != null) languageFuture.join();
-        	} catch (Throwable ig) {
+        	} catch (Exception ig) {
         		language = "en_us";
         		languageFile = this.langs.resolve("messages_"+language+".yml");
         	}
@@ -71,9 +71,9 @@ public class FilesManager {
         SharedFunctions.logger.info("[FILES] Using language: "+language);
         try {
             this.lang = this.loadConfig(LangConfig.class, languageFile, "messages_"+language+".yml");
-        } catch (Throwable ig) {
+        } catch (Exception ig) {
             SharedFunctions.logger.severe("[FILES] Failed to load '"+language+"': "+ig.getMessage());
-            ig.printStackTrace();
+            ig.printStackTrace(System.out);
         }
         
         LANG_KICK_NULL = ColorAPI.toLegacy(this.getLanguage().message.kick.null_ip);
@@ -138,9 +138,9 @@ public class FilesManager {
                 	setup.save();
                 }
             });
-        } catch (Throwable ig) {
+        } catch (Exception ig) {
         	SharedFunctions.logger.severe("[FILES] Failed to load '"+name+"': "+ig.getMessage());
-            ig.printStackTrace();
+            ig.printStackTrace(System.out);
             return null;
         }
     }
@@ -157,7 +157,7 @@ public class FilesManager {
             				try (var body = response.body()) {
             					long size = response.headers().firstValueAsLong("Content-Length").orElse(-1L);
             					DownloadUtils.copyWithProgress(body, target, size, "LANG");
-            				} catch (Throwable e) {
+        			} catch (Exception e) {
             					SharedFunctions.logger.severe("[LANG] Failed to save language file: "+e.getMessage());
             				}
                         } else if (status == 404) {
@@ -174,7 +174,7 @@ public class FilesManager {
             			SharedFunctions.logger.warning("[FILES] Error while downloading language file: "+ex.getMessage());
             			return null;
             		});
-    	} catch (Throwable e) {
+    	} catch (Exception e) {
     		SharedFunctions.logger.warning("[FILES] Error while downloading language file: "+e.getMessage());
     	}
 		return null;

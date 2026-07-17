@@ -115,18 +115,18 @@ public class DownloadLibraries extends SharedFunctions {
 	    classLoader = (classloader != null) ? classloader : this.getClass().getClassLoader();
 	    
 		Path coreFolder = path.resolve("FoxCore");
-		if (Files.notExists(coreFolder)) { try { Files.createDirectories(coreFolder); } catch (Exception ig) {}}
+		if (Files.notExists(coreFolder)) { try { Files.createDirectories(coreFolder); } catch (Exception ignored) { /* expected */ }}
 		coreFolder = coreFolder.resolve("libs");
-		if (Files.notExists(coreFolder)) { try { Files.createDirectories(coreFolder); } catch (Exception ig) {}}
+		if (Files.notExists(coreFolder)) { try { Files.createDirectories(coreFolder); } catch (Exception ignored) { /* expected */ }}
 		Path reloc = coreFolder.resolve("relocator");
 		coreFolder = coreFolder.resolve("FoxWall");
 		Path versionFile = coreFolder.resolve(".version");
-		if (Files.notExists(coreFolder)) { try { Files.createDirectories(coreFolder); } catch (Exception ig) {}}
-		if (Files.notExists(reloc)) { try { Files.createDirectories(reloc); } catch (Exception ig) {}}
+		if (Files.notExists(coreFolder)) { try { Files.createDirectories(coreFolder); } catch (Exception ignored) { /* expected */ }}
+		if (Files.notExists(reloc)) { try { Files.createDirectories(reloc); } catch (Exception ignored) { /* expected */ }}
 		Path relocatedFolder = coreFolder.resolve("relocated");
 		coreFolder = coreFolder.resolve("downloaded");
-		if (Files.notExists(relocatedFolder)) { try { Files.createDirectories(relocatedFolder); } catch (Exception ig) {}}
-		if (Files.notExists(coreFolder)) { try { Files.createDirectories(coreFolder); } catch (Exception ig) {}}
+		if (Files.notExists(relocatedFolder)) { try { Files.createDirectories(relocatedFolder); } catch (Exception ignored) { /* expected */ }}
+		if (Files.notExists(coreFolder)) { try { Files.createDirectories(coreFolder); } catch (Exception ignored) { /* expected */ }}
 		File fo = coreFolder.toFile();
 		File fore = reloc.toFile();
 
@@ -150,13 +150,13 @@ public class DownloadLibraries extends SharedFunctions {
 		            SharedFunctions.logger.info("[CORE] Re-downloading all libraries for having issues about version.");
 		        }
 	        }
-	    } catch (Throwable e) {
+	    } catch (Exception e) {
 	        try {
 	        	deleteFolder(coreFolder);
 	        	deleteFolder(relocatedFolder);
 	            Files.createDirectories(coreFolder);
 	            Files.createDirectories(relocatedFolder);
-	        } catch (Throwable ex) { ex.printStackTrace(); }
+	        } catch (Exception ex) { ex.printStackTrace(System.out); }
 	    }
 		
 	    return this.downloadRelocationTools(fore).thenCompose(v -> {
@@ -171,7 +171,7 @@ public class DownloadLibraries extends SharedFunctions {
 	        
 	    }).exceptionally(ex -> {
 	        this.log("Failed to load libraries:");
-	        ex.printStackTrace();
+	        ex.printStackTrace(System.out);
 	        this.failed = true;
 	        return null;
 	    });
@@ -195,9 +195,9 @@ public class DownloadLibraries extends SharedFunctions {
 	                this.loadLibrary(target.toFile(), config, relocated);
 	            }
 	            return CompletableFuture.completedFuture(null);
-	        } catch (Throwable e) {
+	        } catch (Exception e) {
 	            this.log(config.getName()+" failed to load despite existing, re-downloading...");
-	            try { Files.deleteIfExists(target); } catch (Throwable ig) {}
+	            try { Files.deleteIfExists(target); } catch (Exception ignored) { /* expected */ }
 	        }
 	    }
 		
@@ -206,14 +206,14 @@ public class DownloadLibraries extends SharedFunctions {
 		return this.download(config.getDownloadURL(), config, target, relocated, relocator).exceptionallyCompose(ex -> {
 			if (config.getFallback() == null || config.getFallback().isBlank()) {
 				this.log(config.getName() + " failed and no fallback available.");
-				if (enableLogs) { ex.printStackTrace(); }
+				if (enableLogs) { ex.printStackTrace(System.out); }
 				return CompletableFuture.failedFuture(ex);
 			}
 			this.log(config.getName() + " primary failed, trying fallback...");
-			try { Files.deleteIfExists(target); } catch (Throwable ig) {}
+			try { Files.deleteIfExists(target); } catch (Exception ignored) { /* expected */ }
 			return this.download(config.getFallback(), config, target, relocated, relocator).exceptionallyCompose(ex2 -> {
 					this.log(config.getName() + " fallback also failed.");
-					if (enableLogs) { ex2.printStackTrace(); }
+					if (enableLogs) { ex2.printStackTrace(System.out); }
 					return CompletableFuture.failedFuture(ex2);
 				});
 		});
@@ -229,7 +229,7 @@ public class DownloadLibraries extends SharedFunctions {
 	private CompletableFuture<Void> download(final String url, final LibraryConfig config, final Path target, final File relocated, final boolean relocator) {
 		return this.request(url, target, config.getVersion()).thenCompose(path -> {
 			if (!verifyChecksum(path.toFile(), config.getSHA256())) {
-				try { Files.deleteIfExists(target); } catch (Throwable ig) {}
+				try { Files.deleteIfExists(target); } catch (Exception ignored) { /* expected */ }
 				return CompletableFuture.failedFuture(new RuntimeException("SHA256 mismatch for: "+config.getName()));
 			}
 			try {
@@ -239,8 +239,8 @@ public class DownloadLibraries extends SharedFunctions {
 					this.loadLibrary(target.toFile(), config, relocated);
 				}
 				return CompletableFuture.completedFuture(null);
-			} catch (Throwable e) {
-				try { Files.deleteIfExists(target); } catch (Throwable ig) {}
+			} catch (Exception e) {
+				try { Files.deleteIfExists(target); } catch (Exception ignored) { /* expected */ }
 				return CompletableFuture.failedFuture(e);
 			}
 		});
@@ -324,7 +324,9 @@ public class DownloadLibraries extends SharedFunctions {
     
     private static void deleteFolder(final Path path) throws Exception {
     	if (Files.exists(path)) {
-    		Files.walk(path).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
+    		try (var stream = Files.walk(path)) {
+    			stream.sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
+    		}
     	}
     }
     
@@ -332,7 +334,7 @@ public class DownloadLibraries extends SharedFunctions {
         try {
             String a256 = this.calculateSha256(file);
             return a256.equalsIgnoreCase(s256);
-        } catch (Exception e) {}
+        } catch (Exception e) { /* expected */ }
 		return false;
     }
     

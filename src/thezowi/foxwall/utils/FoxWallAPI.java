@@ -41,18 +41,18 @@ public enum FoxWallAPI {
 			SharedFunctions.logger.info("[CORE] Checking libraries...");
 			DownloadLibraries dL = new DownloadLibraries();
 			dL.downloadLibraries(this.log_flag).join();
-			try { dL.shutdown(); } catch (Exception ig) {}
+			try { dL.shutdown(); } catch (Exception ignored) { /* expected */ }
 			if (dL.failed) { SharedFunctions.logger.severe("[CORE] Could not be loaded/downloaded a dependency."); SharedFunctions.logger.severe("[CORE] The plugin will shutdown. Probably an issue related to"); SharedFunctions.logger.severe("[CORE] your hosting was happened or bad connection."); SharedFunctions.logger.severe("[CORE] Plugin disabled for cause of an unexcepted error."); this.unload(); return; }
 			SharedFunctions.logger.info("[CORE] All libraries checked and loaded!");
 			ColorAPI.force = enableForceColor;
 			ColorAPI.load();
-			try { this.files = FilesManager.initializeAndWait(); } catch (Throwable e) { e.printStackTrace(); SharedFunctions.logger.severe("[FILES] Failed to load the configuration file!"); SharedFunctions.logger.severe("[CORE] Plugin disabled for cause of an unexcepted error."); this.unload(); return; }
+			try { this.files = FilesManager.initializeAndWait(); } catch (Exception e) { SharedFunctions.logger.severe("[FILES] Failed to load the configuration file! " + e.getMessage()); SharedFunctions.logger.severe("[CORE] Plugin disabled for cause of an unexcepted error."); this.unload(); return; }
 			SharedFunctions.file = this.files;
 			
 			try {
 				File jar = this.get();
-				if (AntiMalware.isInfected(jar)) { throw new Throwable("Plugin seems to be compromised."); }
-			} catch (Throwable e) {
+				if (AntiMalware.isInfected(jar)) { throw new Exception("Plugin seems to be compromised."); }
+			} catch (Exception e) {
 				AntiMalware.alert();
 				this.inf.set(true);
 				this.unload();
@@ -63,12 +63,12 @@ public enum FoxWallAPI {
 				case BUKKIT:
 					try {
 						thezowi.foxwall.proxy.bukkit.Loader.INSTANCE.loader();
-					} catch (Throwable e) {
-						e.printStackTrace();
-						SharedFunctions.logger.severe("[CORE] Plugin disabled for cause of an unexcepted error.");
-						this.unload();
-						return;
-					}
+			} catch (Exception e) {
+				AntiMalware.alert();
+				this.inf.set(true);
+				this.unload();
+				return;
+			}
 					break;
 				default:
 					break;
@@ -77,8 +77,8 @@ public enum FoxWallAPI {
 		    SharedFunctions.checkForUpdates(false);
 			try {
 				File jar = this.get();
-				if (AntiMalware.isInfected(jar)) { throw new Throwable("Plugin seems to be compromised."); }
-			} catch (Throwable e) {
+				if (AntiMalware.isInfected(jar)) { throw new Exception("Plugin seems to be compromised."); }
+			} catch (Exception e) {
 				AntiMalware.alert();
 				this.inf.set(true);
 				this.unload();
@@ -101,24 +101,19 @@ public enum FoxWallAPI {
 			case BUKKIT:
 				try {
 					thezowi.foxwall.proxy.bukkit.Loader.INSTANCE.unloader();
-				} catch (Throwable e) {}
+				} catch (Exception e) { /* expected */ }
 				break;
 			default:
 				break;
 	    }
 	    if (updater != null) {
-	    	try { updater.shutdownNow(); } catch (Throwable e) {}
+	    	try { updater.shutdownNow(); } catch (Exception e) { /* expected */ }
 	    }
 		SharedFunctions.logger.info("[CORE] Disabled!");
-		if (this.inf.get() == true) {
-		    new Thread(() -> {
-		        try {
-		            Thread.sleep(1000);
-		            System.exit(1);
-		        } catch (InterruptedException e) {
-		            Thread.currentThread().interrupt();
-		        }
-		    }).start();
+		if (this.inf.get()) {
+		    Executors.newSingleThreadScheduledExecutor().schedule(() -> {
+		        System.exit(1);
+		    }, 1, TimeUnit.SECONDS);
 		}
 		this.enabled = false;
 	}

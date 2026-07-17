@@ -20,6 +20,7 @@ public class DownloadUtils {
 		            long lastReported = 0;
 		            long lastTime = System.currentTimeMillis();
 		            int read;
+		            StringBuilder progressMsg = new StringBuilder(64);
 		
 		            while ((read = input.read(buffer)) != -1) {
 		                output.write(buffer, 0, read);
@@ -35,9 +36,13 @@ public class DownloadUtils {
 		                    
 		                    if (totalSize > 0) {
 		                        int percent = (int) ((totalRead * 100) / totalSize);
-		                        SharedFunctions.logger.info(() -> String.format("[%s] Downloading: %dKB / %dKB (%d%%) - [%s≈]", type, totalReadFinal / 1024, totalSize / 1024, percent, speed));
+		                        progressMsg.setLength(0);
+		                        progressMsg.append('[').append(type).append("] Downloading: ").append(totalReadFinal / 1024).append("KB / ").append(totalSize / 1024).append("KB (").append(percent).append("%) - [").append(speed).append("≈]");
+		                        SharedFunctions.logger.info(progressMsg::toString);
 		                    } else {
-		                        SharedFunctions.logger.info(() -> String.format("[%s] Downloading: %dKB downloaded... [%s≈]", type, totalReadFinal / 1024, speed));
+		                        progressMsg.setLength(0);
+		                        progressMsg.append('[').append(type).append("] Downloading: ").append(totalReadFinal / 1024).append("KB downloaded... [").append(speed).append("≈]");
+		                        SharedFunctions.logger.info(progressMsg::toString);
 		                    }
 		
 		                    lastReported = totalRead;

@@ -42,6 +42,7 @@ public final class MinecraftVersion {
 			return MinecraftVersion.current;
 		}
     
+		@Override
 		public String toString() { return "1." + this.minorVersionNumber; }
 	}
   
