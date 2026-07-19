@@ -324,7 +324,9 @@ public class DownloadLibraries extends SharedFunctions {
     
     private static void deleteFolder(final Path path) throws Exception {
     	if (Files.exists(path)) {
-    		Files.walk(path).sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
+    		try (var stream = Files.walk(path)) {
+    			stream.sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
+    		}
     	}
     }
     
