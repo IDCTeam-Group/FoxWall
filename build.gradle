@@ -1,0 +1,62 @@
+plugins { id 'java' }
+
+group = 'thezowi'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.papermc.io/repository/maven-public/' }
+    maven { url 'https://storehouse.okaeri.eu/repository/maven-releases/' }
+}
+
+dependencies {
+    compileOnly 'io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT'
+    compileOnly 'net.kyori:adventure-api:4.18.0'
+    compileOnly 'net.kyori:adventure-text-serializer-gson:4.18.0'
+    compileOnly 'net.kyori:adventure-text-serializer-bungeecord:4.3.4'
+    compileOnly 'net.kyori:adventure-text-serializer-legacy:4.18.0'
+    compileOnly 'net.kyori:adventure-text-minimessage:4.18.0'
+    compileOnly 'com.google.code.gson:gson:2.11.0'
+    compileOnly 'org.ow2.asm:asm:9.7.1'
+    compileOnly 'me.lucko:jar-relocator:1.5'
+    compileOnly 'eu.okaeri:okaeri-configs-yaml-snakeyaml:6.0.0-beta.8'
+    compileOnly 'eu.okaeri:okaeri-configs-serdes-commons:6.0.0-beta.8'
+    compileOnly 'eu.okaeri:okaeri-configs-validator-okaeri:6.0.0-beta.8'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+}
+
+java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+            // Platform-specific bootstrap files (require Velocity/Bungee/ProtocolLib APIs)
+            exclude '**/boostrap/**'
+            exclude '**/listeners/**'
+            exclude '**/proxy/**'
+            exclude '**/Metrics.java'
+            // Files depending on excluded platform code
+            exclude '**/FoxWallAPI.java'
+            exclude '**/FilesManager.java'
+            exclude '**/CommandBuild.java'
+            exclude '**/CommandTabBuild.java'
+            exclude '**/SharedFunctions.java'
+            exclude '**/AntiMalware.java'
+            exclude '**/DownloadLibraries.java'
+            exclude '**/DownloadUtils.java'
+            exclude '**/AutoUpdater.java'
+            exclude '**/CheckPermissions.java'
+            exclude '**/ColorAPI.java'
+            exclude '**/AdventureWrapper.java'
+            exclude '**/configuration/bStatsConfig.java'
+        }
+        resources { srcDirs = ['src/main/resources'] }
+    }
+}
+
+jar {
+    destinationDirectory = file('.')
+    archiveFileName = "FoxWall.jar"
+}
