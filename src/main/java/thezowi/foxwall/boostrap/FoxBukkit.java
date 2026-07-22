@@ -30,7 +30,7 @@ public final class FoxBukkit extends JavaPlugin {
 		SharedFunctions.logger = this.getLogger();
 		try {
 			SharedFunctions.ver = this.getDescription().getVersion().replace("-pv", "");
-		} catch (Throwable ig) {
+		} catch (Exception ig) {
 			SharedFunctions.ver = "1.6";
 		} 
 		SharedFunctions.plat_ver = this.plat_ver;
@@ -42,7 +42,7 @@ public final class FoxBukkit extends JavaPlugin {
 			SharedFunctions.header();
 			try {
 				this.api.enable(this, Bukkit.getServer(), false).join();
-			} catch (Throwable ig) {
+			} catch (Exception ig) {
 			    if (ig.getCause() instanceof InaccessibleObjectException) {
 			    	SharedFunctions.logger.severe(" ");
 			        SharedFunctions.logger.severe("[CORE] Java module access error: use '--add-opens java.base/java.lang=ALL-UNNAMED' in your start script.");

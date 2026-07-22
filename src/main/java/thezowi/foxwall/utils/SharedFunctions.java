@@ -17,7 +17,6 @@ public class SharedFunctions {
 	public static Logger logger;
 	public static String ver = "N/A";
 	public static String plat_ver = "N/A";
-	public static FilesManager file = null;
 	public static Path path = null;
 	public static Object classloader = null;
 	public static boolean DEBUG = false;
@@ -64,7 +63,7 @@ public class SharedFunctions {
 		String ip = null;
 		try {
 			ip = getAddress().get(6, TimeUnit.SECONDS).toString();
-		} catch (Throwable ig) {
+		} catch (Exception ig) {
 			 SharedFunctions.logger.severe("[IP] Failed to get IP! Try to contact to your hosting");
 			 SharedFunctions.logger.severe("[IP] for receive original IP as alternative!");
 			 SharedFunctions.logger.severe("[IP] Tried to target:");
@@ -108,64 +107,16 @@ public class SharedFunctions {
 			    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 			    return response.body();
 			    
-			} catch (Throwable ig) {
+			} catch (Exception ig) {
 				try {
 					HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://api.ipify.org/")).GET().timeout(Duration.ofMillis(3000)).build();
 				    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 				    return response.body();		
-				} catch (Throwable ig2) { return "Failed!"; }
+				} catch (Exception ig2) { return "Failed!"; }
 			}
 		});
 	}
 	
 	public static void checkForUpdates(final boolean periodically) {
-		if (!file.getSettings().getUpdater().getEnable()) { return; }
-		logger.info(() -> "[UPDATER] Scanning for new versions...");
-		
-		FoxWallAPI tmp_api = FoxWallAPI.INSTANCE;
-		final String type = tmp_api.fw_api_type;
-       	final String api_version = tmp_api.fw_api_v;
-       	final String key = tmp_api.fw_api_key;
-      	final String version = tmp_api.getVersion();
-      	
-      	HttpClient client = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).connectTimeout(Duration.ofSeconds(3)).followRedirects(HttpClient.Redirect.NEVER).build();
-		HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://central.zowi.gay/private/update")).timeout(Duration.ofSeconds(5)).header("User-Agent", "FoxWall ("+type+") - (API"+api_version+") (v"+version+")").header("HWID", AntiMalware.getHWID()).header("Authorization", "Bearer "+key).header("Action", "CHECK").header("Version", version).GET().build();
-		
-		CompletableFuture<HttpResponse<String>> future = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-		future.thenAccept(value -> {
-			if (value.statusCode() == 200) {
-		        String body = value.body().trim();
-		        final String latest;
-		        if (body.startsWith("{")) {
-		        	String parsed;
-		        	try {
-		        		JsonObject json = JsonParser.parseString(body).getAsJsonObject();
-		        		parsed = json.get("latest").getAsString();
-		        	} catch (Exception e) {
-		        		parsed = body;
-		        	}
-		        	latest = parsed;
-		        } else {
-		        	latest = body;
-		        }
-		        
-		        String current = ver.replace("-pv", "");
-		        if (!latest.equals(current)) {
-					if (!periodically) {
-						logger.info(() -> "[UPDATER] A new version of FoxWall has been found.");
-						logger.info(() -> "[UPDATER] Your version is: "+current);
-						logger.info(() -> "[UPDATER] Latest version is: "+latest);
-					}
-					if (file.getSettings().getUpdater().getAutomatically().getEnabled()) { try { AutoUpdater.update(false); } catch (Throwable e) {} }
-				} else {
-					if (!periodically) { logger.info(() -> "[UPDATER] You are using the latest version of FoxWall."); }
-				} 
-			} else {
-				if (!periodically) { logger.warning(() -> "[UPDATER] Failed to check for updates! HTTP status code: "+value.statusCode()); }
-			} 
-		}).exceptionally(exception -> {
-			if (!periodically) { logger.warning(() -> "[UPDATER] An error occurred while checking for updates. Probably your provider it's blocking our Central (central.zowi.gay)"); }
-			return null;
-        });
 	}
 }

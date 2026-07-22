@@ -16,7 +16,7 @@ public final class FoxBungee extends Plugin {
 		SharedFunctions.logger = this.getLogger();
 		try {
 			SharedFunctions.ver = this.getDescription().getVersion().replace("-pv", "");
-		} catch (Throwable ig) {
+		} catch (Exception ig) {
 			SharedFunctions.ver = "1.7";
 		} 
 		SharedFunctions.plat_ver = this.plat_ver;

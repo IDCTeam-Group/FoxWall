@@ -44,7 +44,7 @@ public enum LibrariesRelocator {
     			.filter(pkg -> pkg != null && IGNORED_PREFIXES.stream().noneMatch(pkg::startsWith))
     			.findFirst()
     			.orElse(null);
-    	} catch (Throwable ignored) {
+    	} catch (Exception ignored) {
     		return null;
     	}
     }

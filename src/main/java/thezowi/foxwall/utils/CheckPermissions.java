@@ -8,8 +8,8 @@ public class CheckPermissions {
 	public CheckPermissions() {}
 
 	public boolean hasPermission(String e, String p) {
-	    try { if (Class.forName("net.luckperms.api.LuckPerms") != null) { return this.check("luckperms", e, p);  } } catch (Exception ig) { }
-	    try { if (Class.forName("ru.tehkode.permissions.bukkit.PermissionsEx") != null) { return this.check("permissionsex", e, p); } } catch (Exception ignored) { }
+	    try { if (Class.forName("net.luckperms.api.LuckPerms") != null) { return this.check("luckperms", e, p);  } } catch (Exception ig) { /* expected */ }
+	    try { if (Class.forName("ru.tehkode.permissions.bukkit.PermissionsEx") != null) { return this.check("permissionsex", e, p); } } catch (Exception ignored) { /* expected */ }
 	    return false;
 	}
 

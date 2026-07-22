@@ -87,7 +87,7 @@ public enum Loader {
         	} else {
         		SharedFunctions.logger.info("[CORE] Metrics disabled in config, ignoring it...");
         	}
-        } catch (Exception exception) {}
+        } catch (Exception exception) { /* expected */ }
 	}
 	
 	/*
@@ -233,7 +233,7 @@ public enum Loader {
 		FoliaAPI.cancelAllTasks(plugin);
 		HandlerList.unregisterAll(plugin);
 		
-		try { if(metrics != null) { metrics.shutdown(); } } catch (Throwable ig) {}
+		try { if(metrics != null) { metrics.shutdown(); } } catch (Exception ig) { /* expected */ }
 		switch (packet_handler) {
 			case "protocollib":
 				PLListener.unregister();
@@ -257,20 +257,20 @@ public enum Loader {
 			try {
 				Class<?> adventureAPI = Class.forName("net.kyori.adventure.text.Component");
 				ADVENTURE_METHOD = Player.class.getMethod("sendMessage", adventureAPI);
-			} catch (Throwable ig) {
-				ADVENTURE_METHOD = null;
-			}
+		} catch (Exception ig) {
+			ADVENTURE_METHOD = null;
+		}
 			ADVENTURE_CHECKED = true;
 		}
 		if (ADVENTURE_METHOD != null) {
 	       try {
 	    	   ADVENTURE_METHOD.invoke(player, AdventureWrapper.toJson(component));
 	    	   return;
-	       } catch (Throwable ig) {}
+	       } catch (Exception ig) { /* expected */ }
 		}
 		try {
 			player.spigot().sendMessage(MinecraftVersion.atLeast(V.v1_16) ? BungeeComponentSerializer.get().serialize(component) : BungeeComponentSerializer.legacy().serialize(component));
-		} catch (Throwable ig2) {
+		} catch (Exception ig2) {
 			final String legacy = LEGACY_SERIALIZER.serialize(component);
 			player.sendMessage(legacy.isEmpty() ? " " : legacy);
 		}

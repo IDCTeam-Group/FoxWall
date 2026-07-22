@@ -17,7 +17,7 @@ public class CommandBuild {
   	private static final AtomicBoolean fileDownloading = new AtomicBoolean(false);
   	private static final AtomicBoolean reloading = new AtomicBoolean(false);
   	private static final FilesManager file = SharedFunctions.file;
-  	private static List<cmdEntries> CMDS;
+  	private static final List<cmdEntries> CMDS = new ArrayList<>();
   	
   	private static final Component HELP_HEADER_EMPTY = ColorAPI.component("");
   	private static final Component HELP_HEADER_1 = ColorAPI.component("     <green><bold>FoxWall</bold></green> by <yellow><bold>NovaCraft254</bold></yellow>");
@@ -61,8 +61,8 @@ public class CommandBuild {
   		LANG_UPDATE_DJAR = file.getComp(file.getLanguage().message.update.downloading_jar);
   		LANG_UPDATE_DLJAR = file.getComp(file.getLanguage().message.update.downloaded_jar);
   		
-		if (CMDS != null) { CMDS.clear(); }
-		CMDS = new ArrayList<>(Arrays.asList(
+		CMDS.clear();
+		CMDS.addAll(Arrays.asList(
 			new cmdEntries("<gray>/foxwall</gray> <white>debug", () -> LANG_HELP_DEBUG, "foxwall.command.debug"),
 			new cmdEntries("<gray>/foxwall</gray> <white>reload", () -> LANG_HELP_RELOAD, "foxwall.command.reload"),
 			new cmdEntries("<gray>/foxwall</gray> <white>update <green><plugin></green>", ()-> LANG_HELP_UPDATE, "foxwall.command.update")
